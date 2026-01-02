@@ -45,6 +45,7 @@
       </field>
     </record>
 
+    <!-- Grafica -->
     <record model="ir.ui.view" id="ofm_artista_graph">
       <field name="name">Artistas</field>
       <field name="model">ofm.artista</field>
@@ -58,6 +59,7 @@
       </field>
     </record>
 
+    <!-- Kanban, buscar como se hace -->
     <record id="ofm_artista_kanban_view" model="ir.ui.view">
       <field name="name">ofm.artista.kanban</field>
       <field name="model">ofm.artista</field>
@@ -98,7 +100,7 @@
             </t>
           </templates>
         </kanban>
-        
+
       </field>
     </record>
 

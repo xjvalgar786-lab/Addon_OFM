@@ -10,6 +10,7 @@
       </field>
     </record>
 
+    <!-- FORM -->
     <record id="ofm_staff_form_view" model="ir.ui.view">
       <field name="name">ofm.staff.form</field>
       <field name="model">ofm.staff</field>
@@ -35,6 +36,7 @@
       </field>
     </record>
 
+    <!-- TREE -->
     <record id="ofm_staff_tree_view" model="ir.ui.view">
       <field name="name">ofm.staff.tree</field>
       <field name="model">ofm.staff</field>
@@ -47,7 +49,7 @@
       </field>
     </record>
 
-
+    <!-- SEARCH -->
     <record id="ofm_staff_search_view" model="ir.ui.view">
       <field name="name">ofm.staff.search</field>
       <field name="model">ofm.staff</field>
