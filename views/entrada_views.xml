@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    
+    <record id="view_entrada_tree" model="ir.ui.view">
+      <field name="name">entrada.tree</field>
+      <field name="model">fiesta.entrada</field>
+      <field name="arch" type="xml">
+        <tree string="Entradas">
+            <field name="nombre"/>
+            <field name="edad"/>
+            <field name="tipo"/>
+            <field name="precio"/>
+            <field name="fecha_compra"/>
+        </tree>
+      </field>
+    </record>
+
+    
+<record id="view_entrada_form" model="ir.ui.view">
+  <field name="name">entrada.form</field>
+  <field name="model">fiesta.entrada</field>
+  <field name="arch" type="xml">
+    <form string="Entradas">
+      <sheet>
+        <notebook>
+          <page string="Datos Generales">
+            <group>
+              <field name="tipo"/>
+              <field name="precio"/>
+            </group>
+          </page>
+
+          <page string="Información de Compra">
+            <group>
+              <field name="nombre"/>
+              <field name="edad"/>
+              <field name="fecha_compra"/>
+            </group>
+          </page>
+
+        </notebook>
+      </sheet>
+    </form>
+  </field>
+</record>
+
+
+<record id="entrada_list_action" model="ir.actions.act_window">
+    <field name="name">Entradas</field>
+    <field name="res_model">fiesta.entrada</field>
+    <field name="view_mode">tree,form</field>
+        
+    <field name="view_id" ref="view_entrada_tree"/>
+    <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">Crea una entrada</p>
+    </field>
+</record>
+
+  </data>
+</odoo>

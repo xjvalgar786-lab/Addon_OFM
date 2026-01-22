@@ -1,0 +1,18 @@
+<odoo>
+  <data>
+    <!--Sirva para abrir una ventana y el id es básicamente un idetificador(Para que no se te olvide gordita)-->
+    <record id="actuacion_list_action" model="ir.actions.act_window">
+    <!--Nombre que van a ver en la view-->
+      <field name="name">Actuaciones</field>
+      <!--El modelo que se va a cargar(Lo que está rodeado por el field)-->
+      <field name="res_model">fiesta.actuacion</field>
+      <!--De la forma que se va a ver la información-->
+      <field name="view_mode">tree,form</field>
+      <!--Este es el mensaje que va a aparecer si no hay datos-->
+      <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">Crea una actuacion</p>
+      </field>
+    </record>
+    
+  </data>
+</odoo>
