@@ -1,0 +1,54 @@
+<odoo>
+    <template id="report_entrada_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+
+                        <h2 class="text-center">Comprobante de compra</h2>
+                        <h4 class="text-center text-muted">
+                           
+                        </h4>
+                        <br/>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <p>
+                                    <strong>Nombre del comprador:</strong>
+                                    <span t-field="o.nombre"/>
+                                </p>
+                                <p>
+                                    <strong>Edad:</strong>
+                                    <span t-field="o.edad"/>
+                                </p>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <table class="table table-sm table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Tipo de entrada</th>
+                                    <th>Precio</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span t-field="o.tipo"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.precio"/>
+ €</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
+

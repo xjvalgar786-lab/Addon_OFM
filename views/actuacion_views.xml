@@ -1,5 +1,69 @@
 <odoo>
   <data>
+  <record id="view_actuacion_tree" model="ir.ui.view">
+      <field name="name">actuacion.tree</field>
+      <field name="model">fiesta.actuacion</field>
+      <field name="arch" type="xml">
+        <tree string="Actuaciones">
+            <field name="name"/>
+            <field name="descripcion"/>
+            <field name="fecha_inicio"/>
+            <field name="fecha_fin"/>
+        </tree>
+      </field>
+    </record>
+
+    
+  <record id="view_actuacion_form" model="ir.ui.view">
+    <field name="name">actuacion.form</field>
+    <field name="model">fiesta.actuacion</field>
+    <field name="arch" type="xml">
+      <form string="Entradas">
+        <sheet>
+          <notebook>
+            <page string="Datos Generales">
+              <group>
+                <field name="name"/>
+                <field name="descripcion"/>
+                <field name="entrada_ids"/>
+              </group>
+            </page>
+
+            <page string="Información del concierto">
+              <group>
+                <field name="fecha_inicio"/>
+                <field name="fecha_fin"/>
+              </group>
+            </page>
+
+          </notebook>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="fiesta_actuacion_graph_view" model="ir.ui.view">
+    <field name="name">fiesta.actuacion.graph</field>
+    <field name="model">fiesta.actuacion</field>
+    <field name="arch" type="xml">
+      <graph string="Cantidad de personas por concierto" type= "bar">
+        <field name="cant_entradas" type="measure"/>
+        <field name="name" type="row"/>
+      </graph>
+    </field>
+  </record>
+
+    <record id="fiesta_actuacion_calendar_view" model="ir.ui.view">
+    <field name="name">fiesta.actuacion.calendar</field>
+    <field name="model">fiesta.actuacion</field>
+    <field name="arch" type="xml">
+      <calendar string="Horarios" date_start="fecha_inicio" date_stop="fecha_fin" mode="month">
+        <field name="name" />
+        <field name="descripcion" />
+      </calendar>
+    </field>
+  </record>
+
     <!--Sirva para abrir una ventana y el id es básicamente un idetificador(Para que no se te olvide gordita)-->
     <record id="actuacion_list_action" model="ir.actions.act_window">
     <!--Nombre que van a ver en la view-->
@@ -7,7 +71,7 @@
       <!--El modelo que se va a cargar(Lo que está rodeado por el field)-->
       <field name="res_model">fiesta.actuacion</field>
       <!--De la forma que se va a ver la información-->
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">tree,form,graph,calendar</field>
       <!--Este es el mensaje que va a aparecer si no hay datos-->
       <field name="help" type="html">
         <p class="o_view_nocontent_smiling_face">Crea una actuacion</p>

@@ -9,5 +9,21 @@ class Actuacion(models.Model):
     fecha_fin = fields.Datetime(string="Fecha fin", required=True)
     descripcion = fields.Text(string="Descripción de la actuación")
 
-    # Many2many automático, Odoo creará la tabla intermedia
-    entrada_ids = fields.Many2many("fiesta.entrada", string="Entradas")  
+    entrada_ids = fields.One2many(
+    comodel_name="fiesta.entrada",
+    inverse_name="actuacion_id",
+    string="Entradas"
+)
+    
+    cant_entradas = fields.Integer(string="Cantidad de entradas", compute="_compute_cant_entradas", store=True)
+    
+    @api.depends('entrada_ids')
+    def _compute_cant_entradas(self):
+        for record in self:
+            record.cant_entradas = len(record.entrada_ids)
+    
+    @api.constrains('fecha_inicio', 'fecha_fin')
+    def _check_fecha_inicio_fin(self):
+        for record in self:
+            if record.fecha_inicio > record.fecha_fin:
+                raise models.ValidationError("La fecha de inicio no puede ser posterior a la fecha de fin.")

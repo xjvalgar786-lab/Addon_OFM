@@ -1,6 +1,6 @@
 <odoo>
   <data>
-    
+
     <record id="view_entrada_tree" model="ir.ui.view">
       <field name="name">entrada.tree</field>
       <field name="model">fiesta.entrada</field>
@@ -11,50 +11,96 @@
             <field name="tipo"/>
             <field name="precio"/>
             <field name="fecha_compra"/>
+            <field name="state"/>
         </tree>
       </field>
     </record>
 
-    
-<record id="view_entrada_form" model="ir.ui.view">
-  <field name="name">entrada.form</field>
-  <field name="model">fiesta.entrada</field>
-  <field name="arch" type="xml">
-    <form string="Entradas">
-      <sheet>
-        <notebook>
-          <page string="Datos Generales">
-            <group>
-              <field name="tipo"/>
-              <field name="precio"/>
-            </group>
-          </page>
-
-          <page string="Información de Compra">
-            <group>
-              <field name="nombre"/>
-              <field name="edad"/>
-              <field name="fecha_compra"/>
-            </group>
-          </page>
-
-        </notebook>
-      </sheet>
-    </form>
-  </field>
-</record>
-
-
-<record id="entrada_list_action" model="ir.actions.act_window">
-    <field name="name">Entradas</field>
-    <field name="res_model">fiesta.entrada</field>
-    <field name="view_mode">tree,form</field>
-        
-    <field name="view_id" ref="view_entrada_tree"/>
-    <field name="help" type="html">
-        <p class="o_view_nocontent_smiling_face">Crea una entrada</p>
+    <record id="fiesta_entradas_calendar_view" model="ir.ui.view">
+    <field name="name">fiesta.entrada.calendar</field>
+    <field name="model">fiesta.entrada</field>
+    <field name="arch" type="xml">
+      <calendar string="Entradas" mode="month" date_start ="fecha_compra">
+        <field name="nombre" />
+      </calendar>
     </field>
-</record>
+  </record>
+
+
+    <record id="view_entrada_form" model="ir.ui.view">
+      <field name="name">entrada.form</field>
+      <field name="model">fiesta.entrada</field>
+      <field name="arch" type="xml">
+        <form string="Entradas">
+
+         
+          <header>
+
+            <button name="action_confirmar"
+                    string="Confirmar"
+                    type="object"
+                    states="draft"
+                    class="btn-primary"/>
+
+            <button name="action_usar"
+                    string="Marcar como usada"
+                    type="object"
+                    states="confirmada"
+                    class="btn-success"/>
+
+            <button name="action_cancelar"
+                    string="Cancelar"
+                    type="object"
+                    states="draft,confirmada"
+                    class="btn-danger"/>
+
+            <button name="action_reset_draft"
+                    string="Volver a borrador"
+                    type="object"
+                    states="cancelada,usada"
+                    class="btn-secondary"/>
+
+            <field name="state"
+                   widget="statusbar"
+                   statusbar_visible="draft,confirmada,usada,cancelada"/>
+          </header>
+
+          <sheet>
+            <notebook>
+
+              <page string="Datos Generales">
+                <group>
+                  <field name="tipo"/>
+                  <field name="precio" readonly="1"/>
+                  <field name="actuacion_id"/>
+                </group>
+              </page>
+
+              <page string="Información de Compra">
+                <group>
+                  <field name="nombre"/>
+                  <field name="edad" readonly="1"/>
+                  <field name="fecha_nacimiento"/>
+                  <field name="fecha_compra"/>
+                </group>
+              </page>
+
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="entrada_list_action" model="ir.actions.act_window">
+      <field name="name">Entradas</field>
+      <field name="res_model">fiesta.entrada</field>
+      <field name="view_mode">tree,form,calendar</field>
+      <field name="view_id" ref="view_entrada_tree"/>
+      <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">Crea una entrada</p>
+      </field>
+    </record>
 
   </data>
 </odoo>
